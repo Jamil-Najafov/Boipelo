@@ -1,0 +1,34 @@
+<div class="container" ng-controller="AboutController">
+	<h2>About</h2>
+
+<div class="form-group">
+	<img alt=""
+		ng-src="http://localhost:8080/api/users/{{user.id}}/profilepicture"
+		width="150">
+		</div>
+		
+	<div class="form-group">
+		<div class="button btn btn-primary" ng-file-select
+			ng-file-change="upload($files)" ng-multiple="multiple">Select
+			File</div>
+	</div>
+	
+	<form role="form" ng-submit="updateUser(user)">
+
+
+
+		<div class="form-group">
+			<label for="name">Name:</label> <input type="text"
+				class="form-control" id="name" name="name" ng-model="user.login" />
+		</div>
+
+		<div class="form-group">
+			<label for="email">Email:</label> <input type="text"
+				class="form-control" id="email" name="email" ng-model="user.email" />
+		</div>
+
+		<button type="submit" class="btn btn-primary">Save</button>
+
+	</form>
+
+</div>

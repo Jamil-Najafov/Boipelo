@@ -1,0 +1,14 @@
+<div class="container">
+
+	<h2>Home</h2>
+
+	<ul>
+		<li data-ng-repeat="user in users | orderBy:'name' ">
+			<div>
+				Name: <button type="button" class="btn btn-link" ng-click="goToUser(user.login)">{{user.login}}</button>   &nbsp; Email: {{user.email}} &nbsp;
+				<button type="button" class="btn btn-link" ng-click="addFriend(user, users)">Add Friend</button>
+			</div>
+		</li>
+	</ul>
+
+</div>

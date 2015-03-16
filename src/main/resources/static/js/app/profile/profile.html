@@ -1,0 +1,13 @@
+<div class="container">
+	<h2>{{user.login}}</h2>
+
+	<ul class="nav nav-pills" role="tablist">
+		<li class="active"><button class="btn btn-primary"
+				ng-click="template = templates[0]">About</button></li>
+		<li class="active"><button class="btn btn-primary"
+				ng-click="template = templates[1]">Timeline</button></li>
+	</ul>
+
+	<div ng-include="template.url"></div>
+
+</div>

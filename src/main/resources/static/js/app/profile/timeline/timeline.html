@@ -1,0 +1,54 @@
+<div class="container" ng-controller="TimelineController">
+
+	<h2>Timeline</h2>
+
+	<form role="form">
+
+		<div class="form-group">
+
+			<textarea class="form-control" ng-model="newPost.content" rows="5"
+				cols="80" style="resize: none"></textarea>
+		</div>
+
+		<div class="form-group">
+
+			<button class="btn btn-primary" ng-click="addPost(newPost)">Post</button>
+		</div>
+
+	</form>
+
+	<div>
+		<div ng-repeat="post in timeline | orderBy:'id':reverse=true"
+			style="margin-top: 5%">
+
+			<div class="form-group">
+
+				<img ng-cloak alt=""
+					ng-src="http://localhost:8080/api/users/{{post.poster.id}}/profilepicture"
+					width="60"> {{post.poster.login}}
+				<div class="form-control">{{post.content}}</div>
+			</div>
+
+			<div style="margin-left: 4%">
+
+				<div ng-repeat="comment in post.comments | orderBy:'id'"
+					class="form-horizontal"
+					style="background-color: #fafafa">
+
+					<div class="form-group">
+
+						<img ng-cloak alt=""
+							ng-src="http://localhost:8080/api/users/{{comment.commenter.id}}/profilepicture"
+							width="45"> {{comment.commenter.login}} {{comment.content}}
+					</div>
+				</div>
+
+				<div>
+					<input class="form-control" type="text" id="newComment" cols="80"
+						name="context" ng-model="post.newComment.content"
+						placeholder="Comment..." on-key-enter="addComment(post)" />
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
