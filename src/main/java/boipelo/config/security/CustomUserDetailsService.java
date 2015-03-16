@@ -1,4 +1,4 @@
-package boipelo.spring.config.security;
+package boipelo.config.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

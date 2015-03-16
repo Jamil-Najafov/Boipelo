@@ -1,4 +1,4 @@
-package boipelo.spring.config.rest;
+package boipelo.config.rest;
 
 import java.net.URI;
 import java.net.URISyntaxException;

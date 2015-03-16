@@ -1,4 +1,4 @@
-package boipelo.spring.config.security;
+package boipelo.config.security;
 
 import java.io.IOException;
 

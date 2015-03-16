@@ -1,4 +1,4 @@
-package boipelo.spring.config.persistance;
+package boipelo.config.persistance;
 
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.factory.GraphDatabaseFactory;
