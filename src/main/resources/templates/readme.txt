@@ -1,0 +1,1 @@
+For GIT to keep this folder. templates folder is needed for Spring to build with Thymeleaf support.
