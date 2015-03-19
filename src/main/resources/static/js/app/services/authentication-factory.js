@@ -1,59 +1,56 @@
-(function(angular) {
-	var AuthenticationFactory = function($http, $rootScope, $location) {
+angular.module('boipelo').factory("AuthenticationFactory",
+		AuthenticationFactory);
 
-		return {
+AuthenticationFactory.$inject = [ '$http', '$rootScope', '$location' ];
 
-			authenticate : authenticate,
-			login : login,
-			logout : logout
+function AuthenticationFactory($http, $rootScope, $location) {
 
-		};
+	return {
 
-		/////////////////////////////
+		authenticate : authenticate,
+		login : login,
+		logout : logout
 
-		function authenticate(callback) {
+	};
 
-			$http.get('user').success(function(data) {
+	function authenticate(callback) {
 
-				if (data.name) {
+		$http.get('user').success(function(data) {
 
-					$rootScope.authenticated = true;
-					$rootScope.login = data.principal.login;
-					$rootScope.id = data.principal.id;
+			if (data.name) {
 
-				} else {
+				$rootScope.authenticated = true;
+				$rootScope.login = data.principal.login;
+				$rootScope.id = data.principal.id;
 
-					$rootScope.authenticated = false;
-					$location.path("/login");
-
-				}
-
-				callback && callback();
-
-			}).error(function() {
+			} else {
 
 				$rootScope.authenticated = false;
-				callback && callback();
+				$location.path("/login");
 
-			});
+			}
 
-		}
+			callback && callback();
 
-		function login(credentials) {
-			return $http.post('login', $.param(credentials), {
-				headers : {
-					"content-type" : "application/x-www-form-urlencoded"
-				}
-			})
-		}
+		}).error(function() {
 
-		function logout() {
-			return $http.post('/logout', {})
-		}
+			$rootScope.authenticated = false;
+			callback && callback();
+
+		});
 
 	}
 
-	AuthenticationFactory.$inject = [ '$http', '$rootScope', '$location' ];
-	angular.module('boipelo').factory("AuthenticationFactory",
-			AuthenticationFactory);
-}(angular));
+	function login(credentials) {
+		return $http.post('login', $.param(credentials), {
+			headers : {
+				"content-type" : "application/x-www-form-urlencoded"
+			}
+		})
+	}
+
+	function logout() {
+		return $http.post('/logout', {})
+	}
+
+}

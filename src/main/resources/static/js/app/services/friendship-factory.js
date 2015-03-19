@@ -1,25 +1,23 @@
-(function(angular) {
-	var FriendshipFactory = function($resource, SpringDataRestAdapter) {
+angular.module('boipelo').factory("Friendship", FriendshipFactory);
+FriendshipFactory.$inject = [ '$resource', 'SpringDataRestAdapter' ];
 
-		var actions = {
-			'query' : {
-				method : 'GET',
-				isArray : false
-			},
-			'update' : {
-				method : 'PUT'
-			}
+function FriendshipFactory($resource, SpringDataRestAdapter) {
 
-		};
+	var actions = {
+		'query' : {
+			method : 'GET',
+			isArray : false
+		},
+		'update' : {
+			method : 'PUT'
+		}
 
-		var Friendship = $resource("/api/friendships/:friendshipId", {
-			friendshipId : '@friendshipId'
-		}, actions);
+	};
 
-		return Friendship;
+	var Friendship = $resource("/api/friendships/:friendshipId", {
+		friendshipId : '@friendshipId'
+	}, actions);
 
-	}
+	return Friendship;
 
-	FriendshipFactory.$inject = [ '$resource', 'SpringDataRestAdapter' ];
-	angular.module('boipelo').factory("Friendship", FriendshipFactory);
-}(angular));
+}

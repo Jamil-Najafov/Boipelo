@@ -1,4 +1,5 @@
 angular.module('boipelo').factory("Post", PostFactory);
+
 PostFactory.$inject = [ '$q', '$http', '$resource', 'SpringDataRestAdapter',
 		'api' ];
 
