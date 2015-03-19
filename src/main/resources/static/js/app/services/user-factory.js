@@ -10,6 +10,7 @@
 						method : 'PUT'
 					}
 				});
+				
 				item.save = function(callback) {
 					console.log(item)
 					item.resources.update(item, function() {
