@@ -1,5 +1,11 @@
-angular.module('boipelo').factory('api', api);
+/*
+ * This is the example service/factory format that must be used. 
+ * Explicit bracket style and constructor injection protects against minification and uglification errors.
+ * Constructor right after .$inject helps see injection mismatches easier.
+ * Public member declarations up top, implementation details down bottom.
+ * */ 
 
+angular.module('boipelo').factory('api', api);
 api.$inject = ['$http', 'SpringDataRestAdapter'];
 
 function api($http, SpringDataRestAdapter) {
@@ -27,36 +33,3 @@ function api($http, SpringDataRestAdapter) {
         }
     }
 }
-
-/*
- * (function(angular) {
- * 
- * angular.module('boipelo').factory("Api", Api); Api.$inject = [ '$http',
- * '$resource', 'SpringDataRestAdapter' ];
- * 
- * 
- * 
- * 
- * var Api = function($http, $resource, SpringDataRestAdapter) {
- * 
- * var baseURI = '/api';
- * 
- * return { getBase:getBase, };
- * 
- * function getBase(){
- * 
- * var deferred = $http.get(baseURI);
- * 
- * return
- * SpringDataRestAdapter.processWithPromise(deferred).then(getBaseComplete)
- * .catch(getBaseFailed);
- * 
- * 
- * function getBaseComplete(response) { return response; }
- * 
- * function getBaseFailed(error) { logger.error('XHR Failed for getBase.' +
- * error.data); } }; }
- * 
- * 
- * }(angular));
- */
