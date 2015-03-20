@@ -13,6 +13,7 @@ function PostFactory($q, $http, $resource, SpringDataRestAdapter, api) {
 					method : 'PUT'
 				}
 			});
+
 			item.save = function(callback) {
 				console.log(item)
 				item.resources.update(item, function() {
@@ -29,6 +30,7 @@ function PostFactory($q, $http, $resource, SpringDataRestAdapter, api) {
 				});
 
 			};
+
 		} else {
 
 			item.save = function() {
@@ -78,11 +80,16 @@ function PostFactory($q, $http, $resource, SpringDataRestAdapter, api) {
 
 	};
 
+	// Angular built in service $resource is not made for restful resource
+	// discovery.
 	Post.$resource = $resource("/api/users/:userId/timeline/:postId", {
 		userId : '@userId',
 		postId : '@postId'
 	}, actions);
 
+	// Resource discovery using the api service and angular-spring-data-rest.
+	// Takes long but is more elegant as you don't need to hard code URIs but
+	// only the resource link relations (rels).
 	Post.getTimeline = function(userId) {
 
 		var deferred = $q.defer();
@@ -91,7 +98,14 @@ function PostFactory($q, $http, $resource, SpringDataRestAdapter, api) {
 				.then(
 						function(apiBase) {
 
-							var usersResource = apiBase._resources('users');
+							var usersResource = apiBase._resources('users'); // Discover
+																				// the
+																				// users
+																				// URI
+																				// by
+																				// it's
+																				// rel
+																				// ('users').
 
 							usersResource.get({
 								id : userId

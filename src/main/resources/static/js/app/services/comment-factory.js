@@ -6,7 +6,7 @@ function CommentFactory($resource, api, SpringDataRestAdapter) {
 	var actions = {
 		'query' : {
 			method : 'GET',
-			isArray : false
+			isArray : false // Spring-Haetoas query action returns one object with an embedded list.
 		},
 		'update' : {
 			method : 'PUT'
