@@ -9,9 +9,12 @@ function AuthenticationFactory($http, $rootScope, $location) {
 
 		authenticate : authenticate,
 		login : login,
-		logout : logout
-
+		logout : logout,
+		getPrincipal: getPrincipal
+		
 	};
+	
+	var principal;
 
 	function authenticate(callback) {
 
@@ -22,6 +25,7 @@ function AuthenticationFactory($http, $rootScope, $location) {
 				$rootScope.authenticated = true;
 				$rootScope.login = data.principal.login;
 				$rootScope.id = data.principal.id;
+				principal = data.principal;
 
 			} else {
 
@@ -51,6 +55,10 @@ function AuthenticationFactory($http, $rootScope, $location) {
 
 	function logout() {
 		return $http.post('/logout', {})
+	}
+	
+	function getPrincipal(){
+		return principal;
 	}
 
 }

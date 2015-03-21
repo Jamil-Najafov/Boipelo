@@ -5,7 +5,6 @@ PostFactory.$inject = [ '$q', '$http', '$resource', 'SpringDataRestAdapter',
 
 function PostFactory($q, $http, $resource, SpringDataRestAdapter, api) {
 
-	
 	function Post(item) {
 
 		if (item._resources) {
