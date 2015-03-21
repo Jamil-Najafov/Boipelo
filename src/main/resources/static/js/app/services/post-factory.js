@@ -4,6 +4,29 @@ PostFactory.$inject = [ '$q', '$http', '$resource', 'SpringDataRestAdapter',
 		'api' ];
 
 function PostFactory($q, $http, $resource, SpringDataRestAdapter, api) {
+	
+	var actions = {
+			'query' : {
+				method : 'GET',
+				isArray : false
+			},
+			'update' : {
+				method : 'PUT',
+				url : ('/api/posts')
+			},
+			'save' : {
+				method : 'POST',
+				url : ('/api/posts')
+			}
+
+		};
+	
+	// Angular built in service $resource is not made for restful resource
+	// discovery.
+	var postResource = $resource("/api/users/:userId/timeline/:postId", {
+		userId : '@userId',
+		postId : '@postId'
+	}, actions);
 
 	function Post(item) {
 
@@ -37,7 +60,7 @@ function PostFactory($q, $http, $resource, SpringDataRestAdapter, api) {
 
 				var deferred = $q.defer();
 
-				var post = new Post.$resource(item);
+				var post = new postResource(item);
 
 				post.$save(function(post, headers) {
 
@@ -64,93 +87,6 @@ function PostFactory($q, $http, $resource, SpringDataRestAdapter, api) {
 		return item;
 	}
 
-	var actions = {
-		'query' : {
-			method : 'GET',
-			isArray : false
-		},
-		'update' : {
-			method : 'PUT',
-			url : ('/api/posts')
-		},
-		'save' : {
-			method : 'POST',
-			url : ('/api/posts')
-		}
-
-	};
-
-	// Angular built in service $resource is not made for restful resource
-	// discovery.
-	Post.$resource = $resource("/api/users/:userId/timeline/:postId", {
-		userId : '@userId',
-		postId : '@postId'
-	}, actions);
-
-	// Resource discovery using the api service and angular-spring-data-rest.
-	// Takes long but is more elegant as you don't need to hard code URIs but
-	// only the resource link relations (rels).
-	Post.getTimeline = function(userId) {
-
-		var deferred = $q.defer();
-
-		getApiBase()
-				.then(
-						function(apiBase) {
-
-							var usersResource = apiBase._resources('users'); // Discover
-																				// the
-																				// users
-																				// URI
-																				// by
-																				// it's
-																				// rel
-																				// ('users').
-
-							usersResource.get({
-								id : userId
-							}).$promise
-									.then(function(user) {
-
-										processedUser = SpringDataRestAdapter
-												.process(user);
-
-										var timelineResource = processedUser
-												._resources('timeline');
-
-										timelineResource.get().$promise
-												.then(function(timeline) {
-
-													SpringDataRestAdapter
-															.process(
-																	timeline,
-																	[
-																			'poster',
-																			'comments',
-																			'commenter' ],
-																	true).$promise
-															.then(function(
-																	processedTimeline) {
-
-																deferred
-																		.resolve(processedTimeline._embeddedItems ? processedTimeline._embeddedItems
-																				: []);
-
-															})
-												})
-									})
-						})
-
-		return deferred.promise;
-	}
-
 	return Post;
-
-	function getApiBase() {
-
-		return api.getBase().then(function(apiBase) {
-			return apiBase;
-		});
-	}
-
+	
 }
