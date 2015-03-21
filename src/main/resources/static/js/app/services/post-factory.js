@@ -4,30 +4,8 @@ PostFactory.$inject = [ '$q', '$http', '$resource', 'SpringDataRestAdapter',
 		'api' ];
 
 function PostFactory($q, $http, $resource, SpringDataRestAdapter, api) {
-	
-	var actions = {
-			'query' : {
-				method : 'GET',
-				isArray : false
-			},
-			'update' : {
-				method : 'PUT',
-				url : ('/api/posts')
-			},
-			'save' : {
-				method : 'POST',
-				url : ('/api/posts')
-			}
 
-		};
 	
-	// Angular built in service $resource is not made for restful resource
-	// discovery.
-	var postResource = $resource("/api/users/:userId/timeline/:postId", {
-		userId : '@userId',
-		postId : '@postId'
-	}, actions);
-
 	function Post(item) {
 
 		if (item._resources) {
@@ -60,7 +38,7 @@ function PostFactory($q, $http, $resource, SpringDataRestAdapter, api) {
 
 				var deferred = $q.defer();
 
-				var post = new postResource(item);
+				var post = new PostResource(item);
 
 				post.$save(function(post, headers) {
 
@@ -87,6 +65,28 @@ function PostFactory($q, $http, $resource, SpringDataRestAdapter, api) {
 		return item;
 	}
 
-	return Post;
-	
+	var actions = {
+			'query' : {
+				method : 'GET',
+				isArray : false
+			},
+			'update' : {
+				method : 'PUT',
+				url : ('/api/posts')
+			},
+			'save' : {
+				method : 'POST',
+				url : ('/api/posts')
+			}
+
+		};
+
+		// Angular built in service $resource is not made for restful resource
+		// discovery.
+		var PostResource = $resource("/api/users/:userId/timeline/:postId", {
+			userId : '@userId',
+			postId : '@postId'
+		}, actions);
+
+		return Post;
 }
