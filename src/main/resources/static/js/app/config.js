@@ -1,8 +1,8 @@
 var app = angular.module('boipelo', [ 'ngRoute', 'ngResource',
-		'spring-data-rest', "angularFileUpload" ]);
+		'spring-data-rest', 'angularFileUpload', 'pascalprecht.translate' ]);
 
 app.config(function($routeProvider, $httpProvider,
-		SpringDataRestAdapterProvider) {
+		SpringDataRestAdapterProvider, $translateProvider) {
 
 	$routeProvider.when('/test', {
 		controller : 'TestController',
@@ -24,6 +24,13 @@ app.config(function($routeProvider, $httpProvider,
 	});
 
 	$httpProvider.interceptors.push('httpInterceptor');
+	
+	$translateProvider.useStaticFilesLoader({
+		  prefix: '/js/app/translations/',
+		  suffix: '.json'
+		});
+	
+	$translateProvider.preferredLanguage('enUS');
 	
 	//$httpProvider.defaults.cache = true;
 

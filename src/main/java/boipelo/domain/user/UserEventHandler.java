@@ -9,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 public class UserEventHandler {
 
     @HandleBeforeSave
+    // Application logic polluting the domain.
     @PreAuthorize("#user.getId() == principal.id")
     public void checkUpdateAuthority(User user) {
         //only authority check

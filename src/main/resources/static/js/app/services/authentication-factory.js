@@ -11,6 +11,7 @@ function AuthenticationFactory($http, $rootScope, $location) {
 		login : login,
 		logout : logout,
 		getPrincipal: getPrincipal
+		//getCurrentUser
 		
 	};
 	

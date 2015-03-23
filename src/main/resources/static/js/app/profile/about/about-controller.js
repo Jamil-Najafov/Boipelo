@@ -7,6 +7,7 @@ function AboutController($scope, $rootScope, $upload, User,
 
 	var principal = AuthenticationFactory.getPrincipal();
 	
+	//TODO Discover picture URI in a restful way instead of following:
 	var profileImageURI = "http://localhost:8080/api/users/" + principal.id
 			+ "/profilepicture";
 	
@@ -21,6 +22,7 @@ function AboutController($scope, $rootScope, $upload, User,
 
 	$scope.upload = function(files) {
 
+		// Angular updates an img whenever the src is changed.
 		$scope.profileImageURI = "";
 
 		if (files && files.length) {
