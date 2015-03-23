@@ -18,36 +18,7 @@
 
 	<header ng-cloak>
 
-		<div ng-controller="HeaderController" class="container">
-
-			<h1>Boipelo</h1>
-
-			<ul class="nav nav-pills" role="tablist">
-
-				<!-- <li ng-show="authenticated" class="active"><img alt=""
-					ng-src="{{profileImageURI}}" width="45"></li>  getCurrentUser  -->
-
-				<li ng-show="authenticated" class="active"><button
-						class="btn btn-primary" ng-click="goTo('/')">{{ 'HOME' |
-						translate }}</button></li>
-
-				<li ng-show="authenticated" class="active"><button
-						class="btn btn-primary" ng-click="goToUser($root.login)">{{$root.login}}</button></li>
-
-				<li ng-show="!authenticated" class="active"><button
-						class="btn btn-primary" ng-click="goTo('/login')">Log In</button></li>
-
-				<li ng-show="authenticated" class="active"><button
-						class="btn btn-primary" ng-click="logout()">{{ 'LOGOUT' |
-						translate }}</button></li>
-
-				<li> <select class="form-control" ng-model="selectedLanguage"
-					ng-options="language as language.name for language in languages"
-					ng-change="changeLanguageTo(selectedLanguage)">
-				</select></li>
-			</ul>
-
-		</div>
+		<div ng-include="'js/app/header/header.html'"></div>
 
 	</header>
 
@@ -75,7 +46,7 @@
 
 	<script src="js/app/login/login-controller.js"></script>
 	<script src="js/app/registration/registration-controller.js"></script>
-	<script src="js/app/navigation/header-controller.js"></script>
+	<script src="js/app/header/header-controller.js"></script>
 	<script src="js/app/home/home-controller.js"></script>
 	<script src="js/app/profile/profile-controller.js"></script>
 	<script src="js/app/profile/about/about-controller.js"></script>
