@@ -1,4 +1,4 @@
-var app = angular.module('boipelo', [ 'ngRoute', 'ngResource',
+var app = angular.module('boipelo', [ 'ngRoute', 'ngResource', 'ngStorage',
 		'spring-data-rest', 'angularFileUpload', 'pascalprecht.translate' ]);
 
 app.config(function($routeProvider, $httpProvider,
