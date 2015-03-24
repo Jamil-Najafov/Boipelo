@@ -23,7 +23,8 @@ app.controller('ProfileController', function($scope, $rootScope, $routeParams,
 			url : 'js/app/profile/timeline/timeline.html'
 		} ];
 
-		$scope.template = $scope.templates[0];
+		var defaultTemplateId = 1;
+		$scope.template = $scope.templates[defaultTemplateId];
 
 	}
 

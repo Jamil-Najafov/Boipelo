@@ -10,7 +10,10 @@ function PostFactory($q, $http, $resource, SpringDataRestAdapter, api) {
 			item.resources = item._resources("self", {}, {
 				update : {
 					method : 'PUT'
-				}
+				},
+				updatePartial: {
+					method: 'PATCH'
+				},
 			});
 			item.save = function(callback) {
 				console.log(item)
@@ -27,6 +30,16 @@ function PostFactory($q, $http, $resource, SpringDataRestAdapter, api) {
 
 				});
 
+			};
+			
+			item.updateContent = function(callback){
+				var data = {
+					content: item.content
+				};
+				
+				item.resources.updatePartial(data, function() {
+					callback && callback(item);
+				});
 			};
 		} else {
 

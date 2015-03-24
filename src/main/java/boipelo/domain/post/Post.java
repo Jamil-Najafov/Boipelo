@@ -18,6 +18,8 @@ public class Post {
 
 	String content;
 
+	Long createdAt;
+
 	@RelatedTo(type = "POSTED_BY", direction = Direction.OUTGOING)
 	@Fetch
 	User poster;
@@ -25,7 +27,7 @@ public class Post {
 	@RelatedTo(type = "COMMENTED_TO", direction = Direction.INCOMING)
 	@Fetch
 	Set<Comment> comments;
-	
+
 	@RelatedTo(type = "POSTED_TO", direction = Direction.OUTGOING)
 	@Fetch
 	User postedTo;
@@ -61,13 +63,21 @@ public class Post {
 	public void setId(Long nodeId) {
 		this.nodeId = nodeId;
 	}
-	
+
 	public User getPostedTo() {
 		return postedTo;
 	}
 
 	public void setPostedTo(User postedTo) {
 		this.postedTo = postedTo;
+	}
+
+	public void setCreatedAt(Long createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Long getCreatedAt() {
+		return this.createdAt;
 	}
 
 }

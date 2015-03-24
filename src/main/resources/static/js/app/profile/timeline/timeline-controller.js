@@ -38,7 +38,8 @@
 
 				content : newPost.content,
 				poster : poster._links.self.href,
-				postedTo : posted._links.self.href
+				postedTo : posted._links.self.href,
+				createdAt: Date.now(),
 
 			})
 

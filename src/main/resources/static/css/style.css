@@ -6,3 +6,13 @@
 [ng\:cloak], [ng-cloak], .ng-cloak {
   display: none !important;
 }
+
+span.action {
+	color: #9197a3;
+	cursor: pointer;
+}
+
+span.action:hover {
+	text-decoration: underline;
+}
+

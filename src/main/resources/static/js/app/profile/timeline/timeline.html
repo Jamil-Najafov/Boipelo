@@ -21,13 +21,10 @@
 		<div ng-repeat="post in timeline | orderBy:'id':reverse=true"
 			style="margin-top: 5%">
 
-			<div class="form-group">
-
-				<img ng-cloak alt=""
-					ng-src="http://localhost:8080/api/users/{{post.poster.id}}/profilepicture"
-					width="60"> {{post.poster.login}}
-				<div class="form-control">{{post.content}}</div>
-			</div>
+			<ng-include src="'js/app/templates/post/post.html'" >
+			</ng-include>
+				
+			
 
 			<div style="margin-left: 4%">
 

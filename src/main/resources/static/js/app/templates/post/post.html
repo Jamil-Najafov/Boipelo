@@ -1,0 +1,13 @@
+<div ng-controller="PostController as postCtrl">
+	
+	<img ng-cloak alt=""
+		 ng-src="http://localhost:8080/api/users/{{postCtrl.post.poster.id}}/profilepicture"
+		 width="60"> 
+	{{postCtrl.post.poster.login}}
+	{{postCtrl.post.createdAt| date: "MM/dd/yyyy 'at' h:mma"}}
+	
+	
+	<ng-include src="postCtrl.currentTemplate.url">
+
+	</ng-include>
+</div>
