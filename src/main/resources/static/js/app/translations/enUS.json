@@ -1,4 +1,17 @@
 {
 	"HOME" : "Home",
-    "LOGOUT" : "Logout"
+    "LOGOUT" : "Logout",
+    "SIGN_IN" : "Sign In",
+    "USERNAME" : "User name",
+    "PASSWORD" : "Password",
+    "REGISTER" : "Register",
+    "NAME" : "Name",
+    "EMAIL" : "Email",
+    "ADD_FRIEND" : "Add Friend",
+    "ABOUT" : "About",
+    "TIMELINE" : "Timeline",
+    "UPLOAD" : "Upload",
+    "SAVE" : "Save",
+    "SHARE" : "Share",
+    "COMMENT" : "Comment..."
 }

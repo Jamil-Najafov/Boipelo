@@ -12,7 +12,7 @@
 
 		<div class="form-group">
 
-			<button class="btn btn-primary" ng-click="addPost(newPost)">Post</button>
+			<button class="btn btn-primary" ng-click="addPost(newPost)">{{ 'SHARE' | translate }}</button>
 		</div>
 
 	</form>
@@ -46,7 +46,7 @@
 				<div>
 					<input class="form-control" type="text" id="newComment" cols="80"
 						name="context" ng-model="post.newComment.content"
-						placeholder="Comment..." on-key-enter="addComment(post)" />
+						placeholder="{{ 'COMMENT' | translate }}" on-key-enter="addComment(post)" />
 				</div>
 			</div>
 		</div>

@@ -5,8 +5,12 @@
 	<ul>
 		<li data-ng-repeat="user in users | orderBy:'name' ">
 			<div>
-				Name: <button type="button" class="btn btn-link" ng-click="goToUser(user.login)">{{user.login}}</button>   &nbsp; Email: {{user.email}} &nbsp;
-				<button type="button" class="btn btn-link" ng-click="addFriend(user, users)">Add Friend</button>
+				{{ 'NAME' | translate }}:
+				<button type="button" class="btn btn-link"
+					ng-click="goToUser(user.login)">{{user.login}}</button>
+				&nbsp; {{ 'EMAIL' | translate }}: {{user.email}} &nbsp;
+				<button type="button" class="btn btn-link"
+					ng-click="addFriend(user, users)">{{ 'ADD_FRIEND' | translate }}</button>
 			</div>
 		</li>
 	</ul>

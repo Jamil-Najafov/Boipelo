@@ -3,9 +3,9 @@
 
 	<ul class="nav nav-pills" role="tablist">
 		<li class="active"><button class="btn btn-primary"
-				ng-click="template = templates[0]">About</button></li>
+				ng-click="template = templates[0]">{{ 'ABOUT' | translate }}</button></li>
 		<li class="active"><button class="btn btn-primary"
-				ng-click="template = templates[1]">Timeline</button></li>
+				ng-click="template = templates[1]">{{ 'TIMELINE' | translate }}</button></li>
 	</ul>
 
 	<div ng-include="template.url"></div>

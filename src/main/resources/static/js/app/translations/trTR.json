@@ -1,4 +1,17 @@
 {
 	"HOME" : "Anasayfa",
-    "LOGOUT" : "Çıkış"
+    "LOGOUT" : "Çıkış",
+    "SIGN_IN" : "Giriş",
+    "USERNAME" : "Kullanıcı adı",
+    "PASSWORD" : "Şifre",
+    "REGISTER" : "Kayıt ol",
+    "NAME" : "İsim",
+    "EMAIL" : "Email",
+    "ADD_FRIEND" : "Arkadaş Ekle",
+    "ABOUT" : "Hakkında",
+    "TIMELINE" : "Zaman Çizelgesi",
+    "UPLOAD" : "Yükle",
+    "SAVE" : "Kaydet",
+    "SHARE" : "Paylaş",
+    "COMMENT" : "Yorum yap..."
 }
