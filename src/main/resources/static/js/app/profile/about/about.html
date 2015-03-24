@@ -1,32 +1,23 @@
-<div class="container" ng-controller="AboutController">
+<div ng-controller="AboutController">
+
 	<h2>About</h2>
 
-<div class="form-group">
-	<img alt=""
-		ng-src="{{profileImageURI}}"
-		width="150">
-		</div>
-		
-	<div class="form-group">
-		<div class="button btn btn-primary" ng-file-select
-			ng-file-change="upload($files)" ng-multiple="multiple">{{ 'UPLOAD' | translate }}</div>
-	</div>
-	
 	<form role="form" ng-submit="updateUser(user)">
 
-
-
 		<div class="form-group">
-			<label for="name">{{ 'NAME' | translate }}:</label> <input type="text"
-				class="form-control" id="name" name="name" ng-model="user.login" />
+			<label for="name">{{ 'NAME' | translate }}:</label> <input
+				type="text" class="form-control" id="name" name="name"
+				ng-model="user.login" ng-readonly="!profile.isCurrentUser" />
 		</div>
 
 		<div class="form-group">
-			<label for="email">{{ 'EMAIL' | translate }}:</label> <input type="text"
-				class="form-control" id="email" name="email" ng-model="user.email" />
+			<label for="email">{{ 'EMAIL' | translate }}:</label> <input
+				type="text" class="form-control" id="email" name="email"
+				ng-model="user.email" ng-readonly="!profile.isCurrentUser"/>
 		</div>
 
-		<button type="submit" class="btn btn-primary">{{ 'SAVE' | translate }}</button>
+		<button ng-if="profile.isCurrentUser" type="submit" class="btn btn-primary">{{ 'SAVE' |
+			translate }}</button>
 
 	</form>
 

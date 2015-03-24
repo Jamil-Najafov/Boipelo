@@ -1,58 +1,31 @@
 angular.module('boipelo').controller("AboutController", AboutController);
-AboutController.$inject = [ '$scope', '$rootScope', '$upload', 'User',
-		'AuthenticationFactory' ];
+AboutController.$inject = [ '$scope', '$rootScope', '$routeParams', '$upload', 'User' ];
 
-function AboutController($scope, $rootScope, $upload, User,
+function AboutController($scope, $rootScope, $routeParams, $upload, User,
 		AuthenticationFactory) {
 
-	var principal = AuthenticationFactory.getPrincipal();
-	
-	//TODO Discover picture URI in a restful way instead of following:
-	var profileImageURI = "http://localhost:8080/api/users/" + principal.id
-			+ "/profilepicture";
-	
-	$scope.profileImageURI = profileImageURI;
+	$scope.profile = {};
+	$scope.profile.isCurrentUser = false;
+	$scope.updateUser = updateUser;
 
-	$scope.updateUser = function(user) {
+	init();
+	
+	function init() {
+		
+		User.getByLogin($routeParams.login, function(user) {
+
+			$scope.profile = user
+			$scope.profile.isCurrentUser = user.id == $rootScope.id;
+
+		});
+		
+	}
+
+	function updateUser(user) {
 
 		console.log($scope.$parent.user)
 		$scope.$parent.user.save();
 		$rootScope.login = $scope.$parent.user.login;
+
 	}
-
-	$scope.upload = function(files) {
-
-		// Angular updates an img whenever the src is changed.
-		$scope.profileImageURI = "";
-
-		if (files && files.length) {
-
-			for (var i = 0; i < files.length; i++) {
-				var file = files[i];
-				$upload.upload({
-					url : '/api/upload',
-					fields : {
-						'userId' : $scope.$parent.user.id
-					},
-					file : file
-				}).progress(
-						function(evt) {
-							var progressPercentage = parseInt(100.0
-									* evt.loaded / evt.total);
-							console.log('progress: ' + progressPercentage
-									+ '% ' + evt.config.file.name);
-						}).success(
-						function(data, status, headers, config) {
-							console.log('file ' + config.file.name
-									+ 'uploaded. Response: '
-									+ JSON.stringify(data));
-
-							$scope.profileImageURI = profileImageURI;
-
-						});
-			}
-		}
-
-	};
-
 };
