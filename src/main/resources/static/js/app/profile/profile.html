@@ -1,13 +1,20 @@
 <div class="container">
 
 	<div class="form-group" style="margin-top: 1%">
-		<img style="cursor: pointer" alt="" ng-src="{{profileImageURI}}" width="150" ng-file-select
+
+		<img ng-if="profile.isCurrentUser" style="cursor: pointer" alt=""
+			ng-src="{{profileImageURI}}" width="150" ng-file-select
 			ng-file-change="upload($files)" ng-multiple="multiple">
-		{{user.login}}
+			
+		 <img ng-if="!profile.isCurrentUser"
+			alt="" ng-src="{{profileImageURI}}" width="150">
+		 
+		 {{profile.login}}
+
 	</div>
-	
-	<div >
-	
+
+	<div>
+
 		<ul class="nav nav-pills" role="tablist">
 			<li class="active"><button class="btn btn-primary"
 					ng-click="template = templates[0]">{{ 'ABOUT' | translate
@@ -17,7 +24,7 @@
 					translate }}</button></li>
 		</ul>
 	</div>
-	
+
 	<div ng-include="template.url"></div>
 
 </div>

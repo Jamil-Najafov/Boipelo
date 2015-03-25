@@ -5,9 +5,11 @@ ProfileController.$inject = [ '$scope', '$rootScope', '$routeParams',
 function ProfileController($scope, $rootScope, $routeParams, $window, $upload,
 		User) {
 
-	$scope.user = {};
+	$scope.profile = {};
+	$scope.profile.isCurrentUser = false;
 	$scope.upload = upload;
 	var profileImageURI = "";
+	
 	init();
 
 	function init() {
@@ -26,7 +28,8 @@ function ProfileController($scope, $rootScope, $routeParams, $window, $upload,
 		
 		User.getByLogin($routeParams.login, function(user) {
 
-			$scope.user = user
+			$scope.profile = user
+			$scope.profile.isCurrentUser = user.id == $rootScope.id;
 
 			profileImageURI = "http://localhost:8080/api/users/" + user.id
 					+ "/profilepicture";
@@ -34,7 +37,7 @@ function ProfileController($scope, $rootScope, $routeParams, $window, $upload,
 			$scope.profileImageURI = profileImageURI;
 
 		});
-
+		
 	}
 
 	function upload(files) {
