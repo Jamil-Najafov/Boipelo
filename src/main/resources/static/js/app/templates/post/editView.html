@@ -1,8 +1,14 @@
 <div class="form-group">
 
-	 
-	<div class="form-control postContentView">
-		<textarea ng-model="postCtrl.post.content">{{ postCtrl.post.content }}</textarea><br><br>
+
+	<div class="postContentView">
+		<textarea 
+			ng-model="postCtrl.post.content"  
+			ng-keydown="postCtrl.keyDown($event)" 
+			class="userPostEditArea">
+			{{ postCtrl.post.content}}
+		</textarea>
+		<br><br>
 		<button ng-click="postCtrl.finishEdit(this)">OK</button><button ng-click="postCtrl.cancelEdit(this)">Cancel</button>
 	</div>
 

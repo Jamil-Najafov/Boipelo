@@ -9,8 +9,8 @@
 				url: 'js/app/templates/post/editView.html'
 			},
 		};
-		
-		
+
+
 		ctrl.postOriginalContent = $scope.post.content;
 		ctrl.post = $scope.post;
 
@@ -32,20 +32,31 @@
 			setCurrentTemplate(ctrl.templates.viewTemplate)
 		}
 
+		ctrl.keyDown = function(e) {
+			if (e.keyCode === 13 || e.keyCode === 10) { // User pressed enter...
+				if (e.shiftKey) { // ... while holding shift.
+					// Do nothing. New line should be automatically added to the textarea.
+				} else {
+					// Save and quit.
+					ctrl.finishEdit();
+				}
+			}
+		}
+
 		ctrl.save = function() {
 			var post = ctrl.post;
 			if (!post.save) {
 				post = new Post(post);
 			}
-			
+
 			// Dirty fix for Can not deserialize instance of java.util.Set out of START_OBJECT token...
-			if(post.comments.length == undefined){ // Not an array
+			if (post.comments.length == undefined) { // Not an array
 				post.comments = [];
 			}
 
 			// Not right, baby. Not right.
 			post.poster = post._links.poster.id;
-			
+
 			post.updateContent();
 		}
 
