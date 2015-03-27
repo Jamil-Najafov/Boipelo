@@ -17,6 +17,11 @@
 		// Clone.
 		ctrl.currentTemplate = _.clone(ctrl.templates.defaultTemplate);
 
+		ctrl.removePost = function() {
+			// Ask for confirmation if you like.
+			ctrl.remove();
+		}
+
 		ctrl.editPost = function() {
 			ctrl.postOriginalContent = ctrl.post.content;
 			setCurrentTemplate(ctrl.templates.editTemplate)
@@ -51,6 +56,17 @@
 
 			post.updateContent();
 		}
+
+		ctrl.remove = function() {
+			var post = ctrl.post;
+			if (!post.remove) {
+				post = new Post(post);
+			}
+
+			post.remove(function() {
+				$scope.timeline.splice($scope.timeline.indexOf(ctrl.post), 1);
+			});
+		};
 
 		function setCurrentTemplate(template) {
 			// Have to use url, otherwise changes in child scope (included scope) doesn't propogate to controller scope
