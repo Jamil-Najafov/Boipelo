@@ -17,17 +17,17 @@
 		// Clone.
 		ctrl.currentTemplate = _.clone(ctrl.templates.defaultTemplate);
 
-		ctrl.editPost = function($scope) {
+		ctrl.editPost = function() {
 			ctrl.postOriginalContent = ctrl.post.content;
 			setCurrentTemplate(ctrl.templates.editTemplate)
 		}
 
-		ctrl.finishEdit = function($scope) {
+		ctrl.finishEdit = function() {
 			ctrl.save()
 			setCurrentTemplate(ctrl.templates.viewTemplate)
 		}
 
-		ctrl.cancelEdit = function($scope) {
+		ctrl.cancelEdit = function() {
 			ctrl.post.content = ctrl.postOriginalContent;
 			setCurrentTemplate(ctrl.templates.viewTemplate)
 		}
@@ -48,14 +48,6 @@
 			if (!post.save) {
 				post = new Post(post);
 			}
-
-			// Dirty fix for Can not deserialize instance of java.util.Set out of START_OBJECT token...
-			if (post.comments.length == undefined) { // Not an array
-				post.comments = [];
-			}
-
-			// Not right, baby. Not right.
-			post.poster = post._links.poster.id;
 
 			post.updateContent();
 		}
