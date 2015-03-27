@@ -15,6 +15,8 @@ public class Comment {
 	Long nodeId;
 
 	String content;
+	
+	Long createdAt;
 
 	@RelatedTo(type = "COMMENTED_BY", direction = Direction.OUTGOING)
 	@Fetch
@@ -52,4 +54,12 @@ public class Comment {
 		this.commentedTo = commentedTo;
 	}
 
+	public void setCreatedAt(Long createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Long getCreatedAt() {
+		return this.createdAt;
+	}
+	
 }

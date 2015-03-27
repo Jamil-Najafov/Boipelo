@@ -1,0 +1,19 @@
+<div ng-controller="CommentController as commCtrl">
+	
+	<div>
+		<img ng-cloak alt=""
+			ng-src="http://localhost:8080/api/users/{{commCtrl.post.commenter.id}}/profilepicture"
+			width="45"> 
+		{{commCtrl.post.commenter.login}} 
+		{{commCtrl.post.createdAt| date: "MM/dd/yyyy 'at' h:mma"}}
+		
+		<span ng-click="commCtrl.editPost()" class="action">Edit</span>
+		<span ng-click="commCtrl.removePost()" class="action">X</span>
+	</div>
+	
+	<div ng-include="commCtrl.currentTemplate.url">
+	
+	</div>
+	
+	
+</div>

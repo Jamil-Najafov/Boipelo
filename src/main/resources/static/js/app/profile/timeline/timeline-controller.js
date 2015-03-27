@@ -64,8 +64,8 @@
 				commentedTo : postWithComment._links.self.href
 
 			});
-
-			newComment.$save(function(comment) {
+			
+			newComment.save(function(comment) {
 
 				if (postWithComment.comments.constructor != Array) {
 					postWithComment.comments = []

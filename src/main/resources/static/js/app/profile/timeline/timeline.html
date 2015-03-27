@@ -32,12 +32,10 @@
 					class="form-horizontal"
 					style="background-color: #fafafa">
 
-					<div class="form-group">
-
-						<img ng-cloak alt=""
-							ng-src="http://localhost:8080/api/users/{{comment.commenter.id}}/profilepicture"
-							width="45"> {{comment.commenter.login}} {{comment.content}}
-					</div>
+					<ng-include src="'js/app/templates/comment/comment.html'">
+						
+					</ng-include>
+						
 				</div>
 
 				<div>

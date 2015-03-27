@@ -1,0 +1,16 @@
+<div class="form-group">
+
+
+	<div class="postContentView">
+		<textarea 
+			ng-model="commCtrl.post.content"  
+			ng-keydown="commCtrl.keyDown($event)" 
+			class="userPostEditArea">
+			{{ commCtrl.post.content}}
+		</textarea>
+		<br><br>
+		<button ng-click="commCtrl.finishEdit(this)">OK</button><button ng-click="commCtrl.cancelEdit(this)">Cancel</button>
+	</div>
+
+	<div class="clearfix"></div>
+</div>
