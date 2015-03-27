@@ -66,6 +66,21 @@ function CommentFactory($resource, $http, api, SpringDataRestAdapter) {
 			}
 		};
 
+		// NOTES: PUT method replaces previous associations, no restful alternatives have been found.
+		self.like = function(userUri, callback) {
+			var r = $resource(self._links.likers.href, {}, {
+				'save': {
+					method: 'PUT',
+					headers:{'Content-Type':'text/uri-list; charset=UTF-8'},
+				}
+			});
+			
+			r.save(userUri, function(){
+				callback && callback()
+			})
+			
+		}
+
 		self.init(data);
 
 		return self;

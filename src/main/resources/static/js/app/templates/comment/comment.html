@@ -7,6 +7,8 @@
 		{{commCtrl.post.commenter.login}} 
 		{{commCtrl.post.createdAt| date: "MM/dd/yyyy 'at' h:mma"}}
 		
+		
+		<span ng-click="commCtrl.like()" class="action">Like {{commCtrl.post.likers.count}}</span>
 		<span ng-click="commCtrl.editPost()" class="action">Edit</span>
 		<span ng-click="commCtrl.removePost()" class="action">X</span>
 	</div>

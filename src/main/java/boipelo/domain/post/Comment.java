@@ -7,6 +7,7 @@ import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.annotation.RelatedTo;
 
 import boipelo.domain.user.User;
+import java.util.Set;
 
 @NodeEntity
 public class Comment {
@@ -25,6 +26,10 @@ public class Comment {
 	@RelatedTo(type = "COMMENTED_TO", direction = Direction.OUTGOING)
 	@Fetch
 	Post commentedTo;
+	
+	@RelatedTo(type = "LIKED_BY", direction = Direction.INCOMING)
+	@Fetch
+	Set<User> likers;
 
 	public Long getId() {
 		return nodeId;
@@ -62,4 +67,11 @@ public class Comment {
 		return this.createdAt;
 	}
 	
+	public Set<User> getLikers() {
+		return this.likers;
+	}
+
+	public void setLikers(Set<User> likers) {
+		this.likers = likers;
+	}
 }

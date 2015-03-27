@@ -68,6 +68,15 @@
 			});
 		};
 
+		ctrl.like = function() {
+			var post = new Comment(ctrl.post);
+			// NOTE: scope.user references to the user of profile currently being viewed.
+			post.like($scope.user._links.self.href, function(updatedPost) {
+				console.log(post)
+				console.log(updatedPost)
+			})
+		}
+
 		function setCurrentTemplate(template) {
 			// Have to use url, otherwise changes in child scope (included scope) doesn't propogate to controller scope
 			ctrl.currentTemplate.url = template.url;
